@@ -7,8 +7,10 @@ public class Movement : MonoBehaviour
     private float moveSpeed = 4f;
     [SerializeField]
     private float jumpForce = 6f;
+    public int maxjumps = 2;
     public GroundCheck groundCheck;
     private Rigidbody rb;
+    private int jumpCount = 0;
 
     float horizontal, vertical;
 
@@ -20,10 +22,32 @@ public class Movement : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        
-        if (Input.GetKey(KeyCode.Space) && groundCheck.isGrounded)
+
+        //check for jump input
+        if (Input.GetKeyDown(KeyCode.Space)/* && groundCheck.isGrounded */)
         {
-            rb.AddForce(new Vector3(0, jumpForce, 0));
+            if(jumpCount < maxjumps)
+            {
+                //if(jumpCount == 0)
+                //{
+                //    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                //}
+
+                //if(jumpCount == 1)
+                //{
+                //    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                //}
+
+                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+
+                jumpCount++;
+
+            }
+        }
+
+        if (groundCheck.isGrounded)
+        {
+            jumpCount = 0;
         }
 
         Vector3 move = new Vector3(horizontal, 0, vertical);
