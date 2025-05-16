@@ -1,18 +1,17 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 4f;
-    [SerializeField]
-    private float jumpForce = 6f;
+    private float jumpForce = 8f;
     public int maxjumps = 2;
     public GroundCheck groundCheck;
     private Rigidbody rb;
     private int jumpCount = 0;
 
-    float horizontal, vertical;
+    float vertical;
 
     void Start()
     {
@@ -20,7 +19,6 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
         //check for jump input
@@ -42,6 +40,8 @@ public class Movement : MonoBehaviour
 
                 jumpCount++;
 
+                groundCheck.isGrounded = false;
+
             }
         }
 
@@ -50,8 +50,8 @@ public class Movement : MonoBehaviour
             jumpCount = 0;
         }
 
-        Vector3 move = new Vector3(horizontal, 0, vertical);
-        transform.Translate(move * moveSpeed * Time.deltaTime);
+        //Vector3 move = new Vector3(horizontal, 0, vertical);
+        //transform.Translate(move * moveSpeed * Time.deltaTime);
     }
 
 }

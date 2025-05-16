@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TreeSpin : MonoBehaviour
@@ -19,4 +20,7 @@ public class TreeSpin : MonoBehaviour
         float targetYRotation = transform.eulerAngles.y - spinRate * Time.deltaTime;
         transform.eulerAngles = new Vector3(0.0f, targetYRotation, 0.0f);
     }
+
 }
+
+
