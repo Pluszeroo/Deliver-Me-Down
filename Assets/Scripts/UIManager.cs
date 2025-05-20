@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
         gameOverUI.SetActive(false);
     }
 
+    //private void Update()
+    //if (isGameOver && Input.GetKeyDown(KeyCode.Space))
+
     public void gameOver()
     {
         gameOverUI.SetActive(true);
@@ -18,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("ButtonPressed");
+        Debug.Log("GetKeyDown.SpacePressed");
         SceneManager.LoadScene("TreeTree");
     }
 
