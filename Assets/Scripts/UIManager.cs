@@ -5,10 +5,14 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverUI;
     private bool isGameOver = false;
+    [SerializeField] private GameObject winGameUI;
+    [SerializeField] private GameObject scoreUI;
 
     void Start()
     {
         gameOverUI.SetActive(false);
+        winGameUI.SetActive(false);
+        scoreUI.SetActive(false);
     }
 
     //private void Update()

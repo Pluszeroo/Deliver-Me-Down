@@ -8,6 +8,16 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("TreeTree");
     }
 
+    public void Settings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     public void Quit()
     {
         Application.Quit();

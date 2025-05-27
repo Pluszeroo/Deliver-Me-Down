@@ -17,13 +17,13 @@ public class KillObject : MonoBehaviour
         {
             // Kill the player
             other.gameObject.SetActive(false);
+
             spin.isGameOver = true;
 
             Debug.Log("GameOver");
 
+            Manager.gameOver();
         }
-
-        Manager.gameOver();
     }
     
     

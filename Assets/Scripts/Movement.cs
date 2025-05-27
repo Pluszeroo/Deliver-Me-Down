@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -13,6 +14,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject playerbody;
     private Animator osake;
     float vertical;
+    [SerializeField]
+    private GameStart starter; 
 
     void Start()
     {
@@ -21,26 +24,38 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        vertical = Input.GetAxis("Vertical");
+   
+            vertical = Input.GetAxis("Vertical");
         FallAnimation();
 
         //check for jump input
-        if (Input.GetKeyDown(KeyCode.Space)/* && groundCheck.isGrounded */)
+        if (starter.canJump && Input.GetKeyDown(KeyCode.Space)/* && groundCheck.isGrounded */)
         {
             if (jumpCount < maxjumps)
             {
                 osake.SetBool("IsJumping", true);
-                //if(jumpCount == 0)
-                //{
-                //    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-                //}
 
-                //if(jumpCount == 1)
-                //{
-                //    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-                //}
+                if (jumpCount == 0)
+                {
+                    SoundManager.PlaySound(SoundType.Jump);
+                }
 
-                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                else if (jumpCount == 1)
+                {
+                    SoundManager.PlaySound(SoundType.DoubleJump);
+                }
+
+                    //if(jumpCount == 0)
+                    //{
+                    //    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                    //}
+
+                    //if(jumpCount == 1)
+                    //{
+                    //    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                    //}
+
+                    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
 
                 jumpCount++;
 
@@ -54,6 +69,7 @@ public class Movement : MonoBehaviour
             jumpCount = 0;
 
             osake.SetBool("IsJumping", false);
+
         }
 
 

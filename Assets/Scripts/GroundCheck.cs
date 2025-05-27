@@ -9,6 +9,7 @@ public class GroundCheck : MonoBehaviour
         if(other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            SoundManager.PlaySound(SoundType.Land);
         }
     }
     private void OnTriggerExit(Collider other)
